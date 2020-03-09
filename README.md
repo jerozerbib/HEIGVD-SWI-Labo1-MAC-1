@@ -108,8 +108,11 @@ b) Développer un script en Python/Scapy capable de générer et envoyer des tra
 * 8 - Deauthenticated because sending STA is leaving BSS
 
 __Question__ : quels codes/raisons justifient l'envoie de la trame à la STA cible et pourquoi ?
-
+Les reason codes 1, 5 et 8 devraient être la responsabilité de l'AP (donc envoyés à la STA).
 __Question__ : quels codes/raisons justifient l'envoie de la trame à l'AP et pourquoi ?
+Les reason codes 1, 4 et 8 devraient être la responsabilité de la STA (donc envoyés à l'AP)
+
+Notez que cette partie n'a pas pu être correctement testée, car la désautentification qui fonctionnait d'un laptop à l'autre en classe ne fonctionnait plus lors de mes tests chez moi sur mon hardware, je n'ai donc pas pu vérifier le bon fonctionnenment de la partie reason code.
 
 __Question__ : Comment essayer de déauthentifier toutes les STA ?
 
