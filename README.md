@@ -88,12 +88,18 @@ Le corps de la trame (Frame body) contient, entre autres, un champ de deux octet
 | 39 | Requested from peer QSTA due to timeout                                                                                                                                              |
 | 40 | Peer QSTA does not support the requested cipher suite                                                                                                                                              |
 | 46-65535 | Reserved                                                                                                                                              |
- 
+
 a) Utiliser la fonction de déauthentification de la suite aircrack, capturer les échanges et identifier le Reason code et son interpretation.
 
 __Question__ : quel code est utilisé par aircrack pour déauthentifier un client 802.11. Quelle est son interpretation ?
 
+Le code 7 est utilisé pour déauthentifier un client 802.11. Cela siginifie que nous avons essayé de transmettre des données depuis un client non authentifié.
+
 __Question__ : A l'aide d'un filtre d'affichage, essayer de trouver d'autres trames de déauthentification dans votre capture. Avez-vous en trouvé d'autres ? Si oui, quel code contient-elle et quelle est son interpretation ?
+
+Nous avons utilisé le filtre : `(wlan.fc.type==0)&&(wlan.fc.type_subtype == 0x0c)` et nous n'avons pas trouvé d'autres trames de déauthentification. 
+
+Vous pouvez trouver la preuve avec le fichier `pcap` fourni en [annexe](./Annexe/looking_for_deauth.pcapng). 
 
 b) Développer un script en Python/Scapy capable de générer et envoyer des trames de déauthentification. Le script donne le choix entre des Reason codes différents (liste ci-après) et doit pouvoir déduire si le message doit être envoyé à la STA ou à l'AP :
 * 1 - Unspecified
@@ -107,9 +113,15 @@ __Question__ : quels codes/raisons justifient l'envoie de la trame à l'AP et po
 
 __Question__ : Comment essayer de déauthentifier toutes les STA ?
 
+Pour déauthentifier toutes les STA, nous pourrions faire un `broadcast`. Toutes les STA connectées au réseau seraient alors déauthentifiées. Cependant, certaines refusent ou ne supportent pas les `broadcast` ce qui nécessiterait une déauthentification individuelle de chaque STA.  
+
 __Question__ : Quelle est la différence entre le code 3 et le code 8 de la liste ?
 
+
+
 __Question__ : Expliquer l'effet de cette attaque sur la cible
+
+La cible est déconnectée du réseau.
 
 ### 2. Fake channel evil tween attack
 a)	Développer un script en Python/Scapy avec les fonctionnalités suivantes :
