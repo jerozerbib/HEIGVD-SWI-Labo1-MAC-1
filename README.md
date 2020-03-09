@@ -117,7 +117,7 @@ Pour déauthentifier toutes les STA, nous pourrions faire un `broadcast`. Toutes
 
 __Question__ : Quelle est la différence entre le code 3 et le code 8 de la liste ?
 
-
+Pour le code 3, la station est hors de porté, alors que pour le code 8, c'est l'OS qui change d'AP pour en choisir un plus proche.
 
 __Question__ : Expliquer l'effet de cette attaque sur la cible
 
